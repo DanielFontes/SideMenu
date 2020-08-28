@@ -74,7 +74,7 @@ internal protocol SideMenuNavigationControllerTransitionDelegate: class {
 }
 
 @objcMembers
-public class SideMenuSettings: Model, InitializableClass {
+public class SideMenuSettings: NSObject, Model {
     public var allowPushOfSameClassTwice: Bool = true
     public var alwaysAnimate: Bool = true
     public var animationOptions: UIView.AnimationOptions = .curveEaseInOut
@@ -102,7 +102,7 @@ public class SideMenuSettings: Model, InitializableClass {
     public var statusBarEndAlpha: CGFloat = 0
     public var usingSpringWithDamping: CGFloat = 1
 
-    required public init() {}
+    override public init() {}
 }
 
 internal typealias Menu = SideMenuNavigationController

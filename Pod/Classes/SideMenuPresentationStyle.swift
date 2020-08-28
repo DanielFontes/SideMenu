@@ -8,7 +8,7 @@
 import UIKit
 
 @objcMembers
-open class SideMenuPresentationStyle: InitializableClass {
+open class SideMenuPresentationStyle: NSObject {
     /// Background color behind the views and status bar color
     open var backgroundColor: UIColor = .black
     /// The starting alpha value of the menu before it appears
@@ -36,7 +36,7 @@ open class SideMenuPresentationStyle: InitializableClass {
     /// The strength of the parallax effect on the presenting view once the menu is displayed.
     open var presentingParallaxStrength: CGSize = .zero
 
-    required public init() {}
+    override public init() {}
 
     /// This method is called just before the presentation transition begins. Use this to setup any animations. The super method does not need to be called.
     open func presentationTransitionWillBegin(to presentedViewController: UIViewController, from presentingViewController: UIViewController) {}
