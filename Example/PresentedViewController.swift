@@ -9,8 +9,8 @@ import UIKit
 
 class PresentedViewController: UIViewController {
 
-    @IBAction fileprivate func close() {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction private func close() {
+        dismiss(animated: true, completion: nil)
     }
     
 }
