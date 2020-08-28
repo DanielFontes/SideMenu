@@ -73,7 +73,8 @@ internal protocol SideMenuNavigationControllerTransitionDelegate: class {
     func sideMenuTransitionDidDismiss(menu: Menu)
 }
 
-@objc public class SideMenuSettings: NSObject, Model {
+@objcMembers
+public class SideMenuSettings: NSObject, Model {
     public var allowPushOfSameClassTwice: Bool = true
     public var alwaysAnimate: Bool = true
     public var animationOptions: UIView.AnimationOptions = .curveEaseInOut
