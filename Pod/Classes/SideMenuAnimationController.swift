@@ -35,9 +35,9 @@ internal final class SideMenuAnimationController: NSObject, UIViewControllerAnim
     private weak var containerView: UIView?
     private let leftSide: Bool
     private weak var originalSuperview: UIView?
-    private var presentationController: SideMenuPresentationController?
-    private unowned var presentedViewController: UIViewController?
-    private unowned var presentingViewController: UIViewController?
+    private var presentationController: SideMenuPresentationController!
+    private weak var presentedViewController: UIViewController?
+    private weak var presentingViewController: UIViewController?
     weak var delegate: SideMenuAnimationControllerDelegate?
 
     init(config: Model, leftSide: Bool, delegate: SideMenuAnimationControllerDelegate? = nil) {
@@ -118,13 +118,13 @@ private extension SideMenuAnimationController {
     func prepare(presenting: Bool) {
         guard
             presenting,
-            let presentingViewController = presentingViewController,
-            let presentedViewController = presentedViewController
+            let presentingVC = presentingViewController,
+            let presentedVC = presentedViewController
             else { return }
 
-        originalSuperview = presentingViewController.view.superview
-        containerView?.addSubview(presentingViewController.view)
-        containerView?.addSubview(presentedViewController.view)
+        originalSuperview = presentingVC.view.superview
+        containerView?.addSubview(presentingVC.view)
+        containerView?.addSubview(presentedVC.view)
     }
 
     func transitionWillBegin(presenting: Bool) {
