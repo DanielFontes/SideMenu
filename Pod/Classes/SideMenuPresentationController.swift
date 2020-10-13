@@ -78,10 +78,13 @@ internal final class SideMenuPresentationController {
     
     func containerViewWillLayoutSubviews() {
         guard let containerView = containerView else { return }
-
-        if let presentedVC = self.presentedViewController {
-            presentedVC.view.untransform {
-                presentedVC.view.frame = frameOfPresentedViewInContainerView
+        
+        if let presentedVC = self.presentedViewController,
+           let presentedView = presentedVC.view {
+            presentedView.untransform {
+                presentedView.frame = frameOfPresentedViewInContainerView
+                // Ugly fix for iOS 14.2 beta 2 only works for left side
+                presentedView.subviews.first?.frame.size.width = config.menuWidth
             }
         }
 
@@ -245,7 +248,8 @@ private extension SideMenuPresentationController {
         guard let containerView = containerView else { return .zero }
         var rect = containerView.bounds
         rect.origin.x = leftSide ? 0 : rect.width - config.menuWidth
-        rect.size.width = config.menuWidth
+        // Ugly fix for iOS 14.2 beta 2
+        //rect.size.width = config.menuWidth
         return rect
     }
 
